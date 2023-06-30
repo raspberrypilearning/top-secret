@@ -31,24 +31,47 @@ def open_socket(ip):
     return connection
 
 
-def webpage(temperature, state):
+def webpage(temperature, state) -> str:
+    title = "Raspberry Pi Pico W"
+    state_style = "far fa-lightbulb" if state == "ON" else "fas fa-lightbulb"
+        
     #Template HTML
     html = f"""
             <!DOCTYPE html>
-            <html>
-            <form action="./lighton">
-            <input type="submit" value="Light on" />
-            </form>
-            <form action="./lightoff">
-            <input type="submit" value="Light off" />
-            </form>
-            <p>LED is {state}</p>
-            <p>Temperature is {temperature}</p>
+            <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>{title}</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+            </head>
+            <body>
+                <div class="container">
+                    <div class="px-4 py-5 my-5 text-center">
+                        <img class="d-block mx-auto mb-4" src="https://cdn.cdnlogo.com/logos/r/98/raspberry-pi.svg" alt="Raspberry Pi Logo" width="100">
+                        <h1 class="display-5 fw-bold">{title}</h1>
+                        <div class="col-lg-6 mx-auto">
+                          <p class="lead mb-4">Temperature is {temperature}</p>
+                          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                            <form action="./lighton">
+                                <input class="btn btn-success btn-lg px-4 gap-3" type="submit" value="Light on" />
+                            </form>
+                            <form action="./lightoff">
+                                <input class="btn btn-danger btn-lg px-4 gap-3" type="submit" value="Light off" />
+                            </form>
+                          </div>
+                        </div>
+                        <p>&nbsp;</p>
+                        <p><i class="{state_style} fa-5x"></i></p>
+                      </div>                    
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+                <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
             </body>
             </html>
             """
     return str(html)
-
 
 def serve(connection):
     #Start a webserver
