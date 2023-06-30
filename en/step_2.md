@@ -42,7 +42,7 @@ Hold down the **BOOTSEL** button on your Raspberry Pi Pico W.
 
 --- task ---
 
-Your file manager should open up, with Raspberry Pi Pico being show as an externally connected drive. Drag and drop the firmware file you downloaded into the file manager. Your Raspberry Pi Pico should disconnect and the file manager will close.
+Your file manager should open up, with Raspberry Pi Pico being shown as an externally connected drive. Drag and drop the firmware file you downloaded into the file manager. Your Raspberry Pi Pico should disconnect and the file manager will close.
 
 ![image of the Windows file manager opened, showing Raspberry Pi Pico connected as an external drive](images/file_manager.png)
 
